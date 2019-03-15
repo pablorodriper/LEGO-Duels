@@ -1,0 +1,20 @@
+import bge  # importar los símbolos de blender game engine
+from bge import logic  # e importar los símbolos de la lógica
+
+
+controlador = logic.getCurrentController() # acceder  a este controlador
+objprop = controlador.owner # objeto que posee este controlador.
+sensores = controlador.sensors
+actuadores = controlador.actuators
+
+escena = logic.getCurrentScene() # escena actual
+escenas = logic.getSceneList()  # todas las escenas
+
+for e in escenas:   # recorrer todas las escenas
+    if e.name == "Interfaz":  # si encuentro una con nombre Interfaz
+        interfaz = e  # Asignarla a la variable
+
+TextoEstado = interfaz.objects["Estado"]
+
+if sensores["cambiaestado"].positive:
+    TextoEstado["Text"] = objprop["Estado"]
